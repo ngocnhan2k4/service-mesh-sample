@@ -1,0 +1,63 @@
+---
+# VirtualService with retry policy for customers-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: customers-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - customers-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    timeout: 10s
+    route:
+    - destination:
+        host: customers-service
+        port:
+          number: 8081
+---
+# VirtualService with retry policy for vets-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vets-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - vets-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    timeout: 10s
+    route:
+    - destination:
+        host: vets-service
+        port:
+          number: 8081
+---
+# VirtualService with retry policy for visits-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: visits-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - visits-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    timeout: 10s
+    route:
+    - destination:
+        host: visits-service
+        port:
+          number: 8081

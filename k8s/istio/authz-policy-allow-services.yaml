@@ -1,0 +1,103 @@
+---
+# Allow api-gateway to access customers-service
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-gateway-to-customers
+  namespace: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: customers-service
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/petclinic/sa/api-gateway"]
+    to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE"]
+---
+# Allow api-gateway to access vets-service
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-gateway-to-vets
+  namespace: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: vets-service
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/petclinic/sa/api-gateway"]
+    to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE"]
+---
+# Allow api-gateway to access visits-service
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-gateway-to-visits
+  namespace: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: visits-service
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/petclinic/sa/api-gateway"]
+    to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE"]
+---
+# Allow all services to access discovery-server (Eureka)
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-to-discovery
+  namespace: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: discovery-server
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["petclinic"]
+---
+# Allow all services to access config-server
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-all-to-config
+  namespace: petclinic
+spec:
+  selector:
+    matchLabels:
+      app: config-server
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["petclinic"]
+---
+# Allow health checks from all pods
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-health-checks
+  namespace: petclinic
+spec:
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        paths: ["/actuator/health", "/actuator/info", "/health", "/ready"]
+        methods: ["GET"]

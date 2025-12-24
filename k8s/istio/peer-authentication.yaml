@@ -1,0 +1,17 @@
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: petclinic
+spec:
+  mtls:
+    mode: STRICT  # Bắt buộc mTLS cho toàn bộ namespace
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: istio-system-mtls
+  namespace: istio-system
+spec:
+  mtls:
+    mode: STRICT  # Enable mTLS cho Istio system namespace
