@@ -23,7 +23,7 @@ spec:
         - containerPort: 8083
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: "kubernetes"
+          value: "docker"
         - name: CONFIG_SERVER_URL
           value: "http://config-server:8888"
         - name: EUREKA_INSTANCE_HOSTNAME

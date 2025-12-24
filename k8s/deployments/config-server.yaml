@@ -23,7 +23,7 @@ spec:
         - containerPort: 8888
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: "kubernetes"
+          value: "docker"
         - name: EUREKA_INSTANCE_HOSTNAME
           value: "config-server"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
