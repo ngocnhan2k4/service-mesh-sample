@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: petclinic-api-gateway
+  namespace: petclinic
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - petclinic-gateway # Liên kết quy tắc này với Gateway đã tạo
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: api-gateway
+        port:
+          number: 8080
