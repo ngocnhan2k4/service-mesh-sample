@@ -30,5 +30,3 @@ spec:
           value: "vets-service"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
           value: "http://discovery-server:8761/eureka/"
-        - name: SPRING_CLOUD_CONFIG_ENABLED
-          value: "false"
