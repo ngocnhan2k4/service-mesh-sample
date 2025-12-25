@@ -7,55 +7,28 @@ spec:
   host: "*.petclinic.svc.cluster.local"
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL  # Sử dụng mTLS do Istio quản lý
+      mode: ISTIO_MUTUAL
 ---
+# Disable mTLS for discovery-server (Eureka needs plain HTTP)
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: customers-service
+  name: discovery-server-plaintext
   namespace: petclinic
 spec:
-  host: customers-service
+  host: discovery-server
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL
-    connectionPool:
-      tcp:
-        maxConnections: 100
-      http:
-        http1MaxPendingRequests: 50
-        http2MaxRequests: 100
-    outlierDetection:
-      consecutiveErrors: 5
-      interval: 30s
-      baseEjectionTime: 30s
+      mode: DISABLE
 ---
+# Disable mTLS for config-server
 apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata:
-  name: vets-service
+  name: config-server-plaintext
   namespace: petclinic
 spec:
-  host: vets-service
+  host: config-server
   trafficPolicy:
     tls:
-      mode: ISTIO_MUTUAL
-    connectionPool:
-      tcp:
-        maxConnections: 100
-      http:
-        http1MaxPendingRequests: 50
----
-apiVersion: networking.istio.io/v1beta1
-kind: DestinationRule
-metadata:
-  name: visits-service
-  namespace: petclinic
-spec:
-  host: visits-service
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
-    connectionPool:
-      tcp:
-        maxConnections: 100
+      mode: DISABLE
