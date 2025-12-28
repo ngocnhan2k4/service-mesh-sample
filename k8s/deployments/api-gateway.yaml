@@ -59,3 +59,10 @@ spec:
           value: "Path=/api/customer/**"
         - name: SPRING_CLOUD_GATEWAY_ROUTES_2_FILTERS_0
           value: "StripPrefix=2"
+
+        - name: CUSTOMERS_SERVICE_URL
+          value: "http://customers-service:8081"
+        - name: VETS_SERVICE_URL
+          value: "http://vets-service:8083"
+        - name: VISITS_SERVICE_URL
+          value: "http://visits-service:8082"
