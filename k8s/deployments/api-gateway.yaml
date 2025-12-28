@@ -30,7 +30,15 @@ spec:
           value: "http://config-server:8888"
         - name: EUREKA_INSTANCE_HOSTNAME
           value: "api-gateway"
+        - name: EUREKA_CLIENT_FETCH_REGISTRY
+          value: "false"
         - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
           value: "http://discovery-server:8761/eureka/"
-        - name: SPRING_CLOUD_GATEWAY_DEFAULT_FILTERS
-          value: ""
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
+          value: "vets-service"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
+          value: "http://vets-service:8083"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
+          value: "Path=/api/vet/**"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0
+          value: "StripPrefix=2"
