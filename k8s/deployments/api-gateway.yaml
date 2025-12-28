@@ -43,3 +43,12 @@ spec:
           value: "false"
         - name: SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED
           value: "false"
+
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
+          value: "customers-proxy"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
+          value: "http://customers-service:80"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
+          value: "Path=/api/customer/**"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0
+          value: "StripPrefix=2"
