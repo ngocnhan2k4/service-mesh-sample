@@ -68,3 +68,5 @@ spec:
           value: "http://visits-service:8082"
         - name: SPRING_CLOUD_LOADBALANCER_ENABLED
           value: "false"
+        - name: SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED
+          value: "false"
