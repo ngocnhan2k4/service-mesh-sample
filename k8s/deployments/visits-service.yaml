@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: visits-service
-        image: tnnhan57/visits-service:latest
+        image: docker.io/tnnhan57/visits-service:latest
         ports:
         - containerPort: 8082
         env:

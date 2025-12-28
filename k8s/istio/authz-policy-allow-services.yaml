@@ -71,6 +71,9 @@ spec:
   - from:
     - source:
         namespaces: ["petclinic"]
+    to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE"]
 ---
 # Allow all services to access config-server
 apiVersion: security.istio.io/v1beta1

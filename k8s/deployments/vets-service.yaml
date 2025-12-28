@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: vets-service
-        image: tnnhan57/vets-service:latest
+        image: docker.io/tnnhan57/vets-service:latest
         ports:
         - containerPort: 8083
         env:
