@@ -12,13 +12,13 @@ spec:
   - retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx,reset,connect-failure,refused-stream
+      retryOn: 5xx
     timeout: 10s
     route:
     - destination:
         host: customers-service
         port:
-          number: 8081
+          number: 80
 ---
 # VirtualService with retry policy for vets-service
 apiVersion: networking.istio.io/v1beta1
@@ -33,13 +33,13 @@ spec:
   - retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx,reset,connect-failure,refused-stream
+      retryOn: 5xx
     timeout: 10s
     route:
     - destination:
         host: vets-service
         port:
-          number: 8081
+          number: 80
 ---
 # VirtualService with retry policy for visits-service
 apiVersion: networking.istio.io/v1beta1
@@ -54,10 +54,10 @@ spec:
   - retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx,reset,connect-failure,refused-stream
+      retryOn: 5xx
     timeout: 10s
     route:
     - destination:
         host: visits-service
         port:
-          number: 8081
+          number: 80
