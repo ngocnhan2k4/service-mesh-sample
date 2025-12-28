@@ -16,6 +16,8 @@ spec:
         app: visits-service
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: visits-service
         image: docker.io/tnnhan57/visits-service:latest

@@ -16,6 +16,8 @@ spec:
         app: config-server
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: config-server
         image: docker.io/tnnhan57/config-server:latest

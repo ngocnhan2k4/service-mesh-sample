@@ -16,6 +16,8 @@ spec:
         app: api-gateway
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: api-gateway
         image: docker.io/tnnhan57/api-gateway:latest

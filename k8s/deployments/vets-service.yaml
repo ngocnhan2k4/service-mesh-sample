@@ -16,6 +16,8 @@ spec:
         app: vets-service
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: vets-service
         image: docker.io/tnnhan57/vets-service:latest

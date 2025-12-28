@@ -16,6 +16,8 @@ spec:
         app: customers-service
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: customers-service
         image: docker.io/tnnhan57/customers-service:latest

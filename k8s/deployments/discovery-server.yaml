@@ -16,6 +16,8 @@ spec:
         app: discovery-server
         version: v1
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
         - name: discovery-server
           image: docker.io/tnnhan57/discovery-server:latest
