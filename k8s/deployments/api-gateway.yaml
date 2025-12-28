@@ -52,3 +52,23 @@ spec:
           value: "Path=/api/customer/**"
         - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0
           value: "StripPrefix=2"
+
+        # Route cho Vets
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_1_ID
+          value: "vets-proxy"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_1_URI
+          value: "http://vets-service:80"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_1_PREDICATES_0
+          value: "Path=/api/vet/**"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_1_FILTERS_0
+          value: "StripPrefix=2"
+
+        # Route cho Visits
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_2_ID
+          value: "visits-proxy"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_2_URI
+          value: "http://visits-service:80"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_2_PREDICATES_0
+          value: "Path=/api/visit/**"
+        - name: SPRING_CLOUD_GATEWAY_ROUTES_2_FILTERS_0
+          value: "StripPrefix=2"
