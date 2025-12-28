@@ -66,5 +66,5 @@ spec:
           value: "http://vets-service:8083"
         - name: VISITS_SERVICE_URL
           value: "http://visits-service:8082"
-        - name: SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED
+        - name: SPRING_CLOUD_LOADBALANCER_ENABLED
           value: "false"
