@@ -61,11 +61,11 @@ spec:
           value: "StripPrefix=2"
 
         - name: CUSTOMERS_SERVICE_URL
-          value: "http://customers-service:8081"
+          value: "http://customers-service.petclinic.svc.cluster.local:8081"
         - name: VETS_SERVICE_URL
-          value: "http://vets-service:8083"
+          value: "http://vets-service.petclinic.svc.cluster.local:8083"
         - name: VISITS_SERVICE_URL
-          value: "http://visits-service:8082"
+          value: "http://visits-service.petclinic.svc.cluster.local:8082"
         - name: SPRING_CLOUD_LOADBALANCER_ENABLED
           value: "false"
         - name: SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED
