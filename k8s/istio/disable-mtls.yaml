@@ -1,0 +1,10 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: disable-mtls-petclinic
+  namespace: petclinic
+spec:
+  host: "*.petclinic.svc.cluster.local" # Áp dụng cho mọi service trong namespace
+  trafficPolicy:
+    tls:
+      mode: DISABLE # Tắt mTLS để tránh lỗi bắt tay (handshake)
