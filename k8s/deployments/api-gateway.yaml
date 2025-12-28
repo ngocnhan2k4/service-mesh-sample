@@ -33,39 +33,12 @@ spec:
         - name: EUREKA_CLIENT_REGISTER_WITH_EUREKA
           value: "false"
 
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_0_ID
-        #   value: "vets-service"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_0_URI
-        #   value: "http://vets-service:8083"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_0_PREDICATES_0
-        #   value: "Path=/api/vet/**"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_0_FILTERS_0
-        #   value: "StripPrefix=2"
-
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_1_ID
-        #   value: "visits-service"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_1_URI
-        #   value: "http://visits-service:8082"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_1_PREDICATES_0
-        #   value: "Path=/api/visit/**"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_1_FILTERS_0
-        #   value: "StripPrefix=2"
-
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_2_ID
-        #   value: "customers-service"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_2_URI
-        #   value: "http://customers-service:8081"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_2_PREDICATES_0
-        #   value: "Path=/api/customer/**"
-        # - name: SPRING_CLOUD_GATEWAY_ROUTES_2_FILTERS_0
-        #   value: "StripPrefix=2"
-
         - name: CUSTOMERS_SERVICE_URL
-          value: "http://customers-service:80"
+          value: "http://customers-service"
         - name: VETS_SERVICE_URL
-          value: "http://vets-service:80"
+          value: "http://vets-service"
         - name: VISITS_SERVICE_URL
-          value: "http://visits-service:80"
+          value: "http://visits-service"
         - name: SPRING_CLOUD_LOADBALANCER_ENABLED
           value: "false"
         - name: SPRING_CLOUD_LOADBALANCER_RIBBON_ENABLED
