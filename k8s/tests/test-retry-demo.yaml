@@ -9,7 +9,7 @@ spec:
   http:
   - retries:
       attempts: 3
-      perTryTimeout: 2s
+      perTryTimeout: 1s
       retryOn: 5xx
     fault:
       delay:
