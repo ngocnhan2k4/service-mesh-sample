@@ -12,10 +12,10 @@ spec:
         httpStatus: 500
         percentage:
           value: 50
-    retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: 5xx
+    # retries:
+    #   attempts: 3
+    #   perTryTimeout: 2s
+    #   retryOn: 5xx
     route:
     - destination:
         host: customers-service
