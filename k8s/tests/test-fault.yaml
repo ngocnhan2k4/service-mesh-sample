@@ -8,14 +8,14 @@ spec:
   - customers-service
   http:
   - fault:
-      abort:
+      delay:
         percentage:
           value: 50
-        httpStatus: 500
+        fixedDelay: 5s
     retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx
+      retryOn: 5xx,retriable-status-codes
     route:
     - destination:
         host: customers-service
