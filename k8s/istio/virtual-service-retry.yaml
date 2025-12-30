@@ -62,3 +62,25 @@ spec:
         port:
           number: 80
 ---
+
+
+---
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: api-gateway-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - api-gateway
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx,connect-failure
+    route:
+    - destination:
+        host: api-gateway
+        port:
+          number: 80
+---
