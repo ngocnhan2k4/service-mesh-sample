@@ -10,7 +10,7 @@ spec:
   - fault:
       abort:
         percentage:
-          value: 100
+          value: 50
         httpStatus: 500
     retries:
       attempts: 3
