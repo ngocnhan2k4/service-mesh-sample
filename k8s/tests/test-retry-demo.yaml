@@ -1,31 +1,22 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: customers-retry-demo
+  name: customers-resilience-test
   namespace: petclinic
 spec:
   hosts:
   - customers-service
   http:
-  - match:
-    - headers:
-        x-test-retry:
-          exact: "true"
-    fault:
+  - fault:
       abort:
         percentage:
-          value: 70
-        httpStatus: 503
+          value: 50
+        httpStatus: 500
     retries:
-      attempts: 5
-      perTryTimeout: 1s
+      attempts: 3
+      perTryTimeout: 2s
       retryOn: 5xx
     route:
-    - destination:
-        host: customers-service
-        port:
-          number: 80
-  - route:
     - destination:
         host: customers-service
         port:
