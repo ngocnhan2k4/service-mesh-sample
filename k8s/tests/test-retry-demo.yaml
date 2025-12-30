@@ -1,23 +1,23 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: customers-resilience-test
+  name: customers-retry-test
   namespace: petclinic
 spec:
   hosts:
-  - customers-service  # Sửa thành short name
+  - customers-service
   http:
-  - fault:
-      abort:
-        httpStatus: 500
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx
+    fault:
+      delay:
+        fixedDelay: 3s
         percentage:
           value: 50
-    # retries:
-    #   attempts: 3
-    #   perTryTimeout: 2s
-    #   retryOn: 5xx,retriable-4xx,refused-stream,retriable-status-codes
     route:
     - destination:
-        host: customers-service  # Sửa thành short name
+        host: customers-service
         port:
           number: 80
