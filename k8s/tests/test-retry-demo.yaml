@@ -20,4 +20,4 @@ spec:
     - destination:
         host: customers-service.petclinic.svc.cluster.local
         port:
-          number: 8081
+          number: 80
