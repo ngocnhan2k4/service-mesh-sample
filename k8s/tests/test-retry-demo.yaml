@@ -7,18 +7,17 @@ spec:
   hosts:
   - customers-service
   http:
-    - route:
-      - destination:
-          host: customers-service
-          port:
-            number: 80
-      retries:
-        attempts: 3
-        perTryTimeout: 2s
-        retryOn: "500"
-    - fault:
+  - fault:
       abort:
         httpStatus: 500
         percentage:
           value: 50
-    
+    retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx
+    route:
+    - destination:
+        host: customers-service
+        port:
+          number: 80
