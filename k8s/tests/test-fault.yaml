@@ -11,7 +11,7 @@ spec:
       abort:
         percentage:
           value: 50
-        httpStatus: 400
+        httpStatus: 500
     retries:
       attempts: 3
       perTryTimeout: 2s
