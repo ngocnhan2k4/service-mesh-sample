@@ -15,7 +15,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx
+      retryOn: 500
     route:
     - destination:
         host: customers-service
