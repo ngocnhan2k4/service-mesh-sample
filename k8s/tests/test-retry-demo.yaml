@@ -5,7 +5,7 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - customers-service.petclinic.svc.cluster.local
+  - customers-service  # Sửa thành short name
   http:
   - fault:
       abort:
@@ -15,9 +15,9 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s
-      retryOn: 5xx
+      retryOn: 5xx,retriable-4xx,refused-stream,retriable-status-codes
     route:
     - destination:
-        host: customers-service.petclinic.svc.cluster.local
+        host: customers-service  # Sửa thành short name
         port:
           number: 80
