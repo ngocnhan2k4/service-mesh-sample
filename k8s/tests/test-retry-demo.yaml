@@ -7,12 +7,7 @@ spec:
   hosts:
   - customers-service
   http:
-  - fault:
-      abort:
-        httpStatus: 503
-        percentage:
-          value: 50
-    retries:
+  - retries:
       attempts: 3
       retryOn: 5xx
     route:
