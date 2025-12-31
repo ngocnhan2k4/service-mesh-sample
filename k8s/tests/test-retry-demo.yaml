@@ -16,9 +16,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 1s
-      retryOn: 5xx,reset,connect-failure,refused-stream,retriable-status-codes
-      retriableStatusCodes:
-      - 503
+      retryOn: 5xx,reset,connect-failure,refused-stream
     timeout: 10s
     fault:
       delay:
