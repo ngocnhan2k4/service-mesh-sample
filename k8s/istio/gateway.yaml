@@ -5,11 +5,11 @@ metadata:
   namespace: petclinic
 spec:
   selector:
-    istio: ingressgateway # chỉ định rằng cấu hình này sẽ được áp dụng lên Pod istio-ingressgateway
+    istio: ingressgateway
   servers:
   - port:
       number: 80
       name: http
       protocol: HTTP 
     hosts:
-    - "*" # Cho phép truy cập từ bất kỳ tên miền hoặc địa chỉ IP nào
+    - "*"

@@ -1,5 +1,5 @@
 ---
-# Allow api-gateway and vets-service to access customers-service
+# Allow api-gateway to access customers-service
 apiVersion: security.istio.io/v1beta1
 kind: AuthorizationPolicy
 metadata:
@@ -14,12 +14,6 @@ spec:
   - from:
     - source:
         principals: ["cluster.local/ns/petclinic/sa/api-gateway"]
-    to:
-    - operation:
-        methods: ["GET", "POST", "PUT", "DELETE"]
-  - from:
-    - source:
-        principals: ["cluster.local/ns/petclinic/sa/vets-service"]
     to:
     - operation:
         methods: ["GET", "POST", "PUT", "DELETE"]

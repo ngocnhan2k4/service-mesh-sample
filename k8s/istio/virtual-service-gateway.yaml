@@ -7,7 +7,7 @@ spec:
   hosts:
   - "*"
   gateways:
-  - petclinic-gateway # Liên kết quy tắc này với Gateway đã tạo
+  - petclinic-gateway
   http:
   - match:
     - uri:

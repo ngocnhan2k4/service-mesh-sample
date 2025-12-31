@@ -1,25 +1,25 @@
-# ---
-# # VirtualService with retry policy for customers-service
-# apiVersion: networking.istio.io/v1beta1
-# kind: VirtualService
-# metadata:
-#   name: customers-service-retry
-#   namespace: petclinic
-# spec:
-#   hosts:
-#   - customers-service
-#   http:
-#   - retries:
-#       attempts: 3
-#       perTryTimeout: 2s
-#       retryOn: 5xx
-#     timeout: 10s
-#     route:
-#     - destination:
-#         host: customers-service
-#         port:
-#           number: 80
-# ---
+---
+# VirtualService with retry policy for customers-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: customers-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - customers-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx
+    timeout: 10s
+    route:
+    - destination:
+        host: customers-service
+        port:
+          number: 80
+---
 # VirtualService with retry policy for vets-service
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
