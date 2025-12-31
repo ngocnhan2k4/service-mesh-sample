@@ -12,8 +12,8 @@ spec:
       perTryTimeout: 1s
       retryOn: 5xx
     fault:
-      delay:
-        fixedDelay: 3s
+      abort:
+        httpStatus: 500
         percentage:
           value: 50
     route:
