@@ -18,6 +18,7 @@ spec:
     spec:
       imagePullSecrets:
       - name: dockerhub-secret
+      serviceAccountName: customers-service
       containers:
       - name: customers-service
         image: docker.io/tnnhan57/customers-service:latest
