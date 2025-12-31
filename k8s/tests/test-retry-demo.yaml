@@ -7,17 +7,18 @@ spec:
   hosts:
   - customers-service
   http:
-  - retries:
-      attempts: 5
-      perTryTimeout: 10s
-      retryOn: 5xx,reset,connect-failure,refused-stream
-    fault:
-      abort:
-        httpStatus: 500
-        percentage:
-          value: 50
-    route:
+  - route:
     - destination:
         host: customers-service
         port:
           number: 80
+      weight: 100
+    retries:
+      attempts: 5
+      perTryTimeout: 2s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    fault:
+      abort:
+        httpStatus: 503
+        percentage:
+          value: 50
