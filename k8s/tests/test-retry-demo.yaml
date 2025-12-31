@@ -7,11 +7,11 @@ spec:
   hosts:
   - customers-service
   http:
-  # - retries:
-  #     attempts: 5
-  #     perTryTimeout: 10s
-  #     retryOn: 5xx,reset,connect-failure,refused-stream
-  - fault:
+  - retries:
+      attempts: 5
+      perTryTimeout: 10s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    fault:
       abort:
         httpStatus: 500
         percentage:
