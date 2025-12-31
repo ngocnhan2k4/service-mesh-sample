@@ -9,13 +9,13 @@ spec:
   http:
   - retries:
       attempts: 3
-      perTryTimeout: 1s
-      retryOn: 5xx
+      perTryTimeout: 2s
+      retryOn: 5xx,reset,connect-failure,refused-stream
     fault:
       abort:
         httpStatus: 500
         percentage:
-          value: 50
+          value: 30
     route:
     - destination:
         host: customers-service
