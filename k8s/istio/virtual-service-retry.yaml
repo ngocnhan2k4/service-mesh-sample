@@ -7,18 +7,18 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - customers-service
+    - customers-service
   http:
-  - retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: 5xx
-    timeout: 10s
-    route:
-    - destination:
-        host: customers-service
-        port:
-          number: 80
+    - retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: 5xx
+      timeout: 10s
+      route:
+        - destination:
+            host: customers-service
+            port:
+              number: 80
 ---
 # VirtualService with retry policy for vets-service
 apiVersion: networking.istio.io/v1beta1
@@ -28,18 +28,18 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - vets-service
+    - vets-service
   http:
-  - retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: 5xx
-    timeout: 10s
-    route:
-    - destination:
-        host: vets-service
-        port:
-          number: 80
+    - retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: 5xx
+      timeout: 10s
+      route:
+        - destination:
+            host: vets-service
+            port:
+              number: 80
 ---
 # VirtualService with retry policy for visits-service
 apiVersion: networking.istio.io/v1beta1
@@ -49,16 +49,38 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - visits-service
+    - visits-service
   http:
-  - retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: 5xx
-    timeout: 10s
-    route:
-    - destination:
-        host: visits-service
-        port:
-          number: 80
+    - retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: 5xx
+      timeout: 10s
+      route:
+        - destination:
+            host: visits-service
+            port:
+              number: 80
 ---
+# VirtualService with retry policy for api-gateway
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: api-gateway-retry
+  namespace: petclinic
+spec:
+  hosts:
+    - api-gateway
+  http:
+    - retries:
+        attempts: 3
+        perTryTimeout: 2s
+        retryOn: 5xx
+      timeout: 10s
+      route:
+        - destination:
+            host: api-gateway
+            port:
+              number: 80
+---
+
