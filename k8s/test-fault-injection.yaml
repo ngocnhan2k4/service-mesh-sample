@@ -1,0 +1,27 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: hello-world-filter
+spec:
+  workloadSelector:
+    labels:
+      app: customers-service
+  configPatches:
+    - applyTo: HTTP_FILTER
+      match:
+        context: SIDECAR_INBOUND # will match outbound listeners in all sidecars
+        listener:
+          filterChain:
+            filter:
+              name: "envoy.filters.network.http_connection_manager"
+      patch:
+        operation: INSERT_BEFORE
+        value:
+          name: envoy.fault
+          typed_config:
+            "@type": "type.googleapis.com/envoy.extensions.filters.http.fault.v3.HTTPFault"
+            abort:
+              http_status: 500
+              percentage:
+                numerator: 50
+                denominator: HUNDRED
