@@ -1,8 +1,7 @@
----
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: customers-fault-delay
+  name: customers-retry-delay
   namespace: petclinic
 spec:
   hosts:
@@ -13,25 +12,10 @@ spec:
         fixedDelay: 5s
         percentage:
           value: 100
-    route:
-    - destination:
-        host: customers-service.petclinic.svc.cluster.local
----
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: api-gateway-retry
-  namespace: petclinic
-spec:
-  hosts:
-  - api-gateway.petclinic.svc.cluster.local
-  http:
-  - retries:
+    retries:
       attempts: 3
       perTryTimeout: 2s
       retryOn: 5xx,connect-failure,refused-stream
     route:
     - destination:
-        host: api-gateway.petclinic.svc.cluster.local
-
-
+        host: customers-service.petclinic.svc.cluster.local
