@@ -7,7 +7,10 @@ spec:
   hosts:
   - customers-service
   http:
-  - fault:
+  - match:
+    - sourceLabels:
+        app: vets-service
+    fault:
       delay:
         percentage:
           value: 30
