@@ -6,15 +6,17 @@ metadata:
 spec:
   hosts:
   - customers-service.petclinic.svc.cluster.local
+  gateways:
+  - petclinic-gateway # QUAN TRỌNG: Thêm dòng này để api-gateway nhận cấu hình
   http:
   - fault:
       delay:
-        fixedDelay: 5s
+        fixedDelay: 2s # Giảm delay xuống 2s
         percentage:
           value: 100
     retries:
       attempts: 3
-      perTryTimeout: 2s
+      perTryTimeout: 4s # Tăng timeout lên 4s (lớn hơn delay) để request có cơ hội thành công
       retryOn: 5xx,connect-failure,refused-stream
     route:
     - destination:
