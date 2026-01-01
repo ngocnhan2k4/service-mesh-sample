@@ -15,7 +15,7 @@ spec:
     retries:
       attempts: 3
       perTryTimeout: 2s # CHỈ chờ 2 giây mỗi lần (Nhỏ hơn delay 5s)
-      retryOn: 5xx,connect-failure,refused-stream,timeout # Thêm 'timeout' vào đây
+      retryOn: 5xx,connect-failure,refused-stream,gateway-error
     route:
     - destination:
         host: customers-service
