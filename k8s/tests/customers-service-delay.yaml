@@ -11,8 +11,8 @@ spec:
   - mesh # Thêm mesh để dashboard (như Kiali) hiển thị liên kết nội bộ
   http:
   - fault:
-      delay:
-        fixedDelay: 2s
+      abort:
+        httpStatus: 503  # Ép buộc trả về lỗi 5xx
         percentage:
           value: 100
     retries:
