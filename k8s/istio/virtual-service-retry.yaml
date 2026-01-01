@@ -1,24 +1,64 @@
+---
+# VirtualService with retry policy for customers-service
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: customers-retry-delay
+  name: customers-service-retry
   namespace: petclinic
 spec:
   hosts:
-  - customers-service # Thử dùng tên ngắn
-  gateways:
-  - petclinic-gateway
-  - mesh # Thêm mesh để dashboard (như Kiali) hiển thị liên kết nội bộ
+  - customers-service
   http:
-  - fault:
-      delay:
-        fixedDelay: 2s
-        percentage:
-          value: 100
-    retries:
+  - retries:
       attempts: 3
-      perTryTimeout: 4s
-      retryOn: 5xx,connect-failure,refused-stream
+      perTryTimeout: 2s
+      retryOn: 5xx
+    timeout: 10s
     route:
     - destination:
         host: customers-service
+        port:
+          number: 80
+---
+# VirtualService with retry policy for vets-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: vets-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - vets-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx
+    timeout: 10s
+    route:
+    - destination:
+        host: vets-service
+        port:
+          number: 80
+---
+# VirtualService with retry policy for visits-service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: visits-service-retry
+  namespace: petclinic
+spec:
+  hosts:
+  - visits-service
+  http:
+  - retries:
+      attempts: 3
+      perTryTimeout: 2s
+      retryOn: 5xx
+    timeout: 10s
+    route:
+    - destination:
+        host: visits-service
+        port:
+          number: 80
+---

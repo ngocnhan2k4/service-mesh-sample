@@ -5,19 +5,20 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - customers-service.petclinic.svc.cluster.local
+  - customers-service # Thử dùng tên ngắn
   gateways:
-  - petclinic-gateway # QUAN TRỌNG: Thêm dòng này để api-gateway nhận cấu hình
+  - petclinic-gateway
+  - mesh # Thêm mesh để dashboard (như Kiali) hiển thị liên kết nội bộ
   http:
   - fault:
       delay:
-        fixedDelay: 2s # Giảm delay xuống 2s
+        fixedDelay: 2s
         percentage:
           value: 100
     retries:
       attempts: 3
-      perTryTimeout: 4s # Tăng timeout lên 4s (lớn hơn delay) để request có cơ hội thành công
+      perTryTimeout: 4s
       retryOn: 5xx,connect-failure,refused-stream
     route:
     - destination:
-        host: customers-service.petclinic.svc.cluster.local
+        host: customers-service
