@@ -8,10 +8,10 @@ spec:
   - customers-service
   http:
   - fault:
-      abort:
-        httpStatus: 503
+      delay:
         percentage:
           value: 50
+        fixedDelay: 5s
     retries:
       attempts: 3
       perTryTimeout: 2s
