@@ -6,12 +6,11 @@ metadata:
 spec:
   hosts:
   - customers-service
-  http:
   - fault:
-      delay:
-        fixedDelay: 5s # Ép request chậm 5 giây
+      abort:
+        httpStatus: 503
         percentage:
-          value: 100
+          value: 50
     retries:
       attempts: 3
       perTryTimeout: 2s # CHỈ chờ 2 giây mỗi lần (Nhỏ hơn delay 5s)
