@@ -5,20 +5,17 @@ metadata:
   namespace: petclinic
 spec:
   hosts:
-  - customers-service # Thử dùng tên ngắn
-  gateways:
-  - petclinic-gateway
-  - mesh # Thêm mesh để dashboard (như Kiali) hiển thị liên kết nội bộ
+  - customers-service
   http:
   - fault:
-      abort:
-        httpStatus: 503  # Ép buộc trả về lỗi 5xx
+      delay:
+        fixedDelay: 5s # Ép request chậm 5 giây
         percentage:
           value: 100
     retries:
       attempts: 3
-      perTryTimeout: 4s
-      retryOn: 5xx,connect-failure,refused-stream
+      perTryTimeout: 2s # CHỈ chờ 2 giây mỗi lần (Nhỏ hơn delay 5s)
+      retryOn: 5xx,connect-failure,refused-stream,timeout # Thêm 'timeout' vào đây
     route:
     - destination:
         host: customers-service
